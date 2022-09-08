@@ -17,38 +17,45 @@ const ConnectWalletModal = ({ opened, onClose }) => {
     }
   };
 
+  const handleMetaMask = async () => {
+    try {
+      await activate(Injected);
+      setProvider("MetaMask");
+      onClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleWalletConnect = async () => {
+    try {
+      await activate(WalletConnect);
+
+      await setProvider("WalletConnect");
+      onClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCoinbaseWallet = async () => {
+    try {
+      await activate(CoinbaseWallet);
+      setProvider("CoinbaseWallet");
+      onClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Modal opened={opened} onClose={onClose}>
       <div>
         <h1>Connect Wallet</h1>
         <p>Select a wallet</p>
-        <Button
-          onClick={async () => {
-            await activate(Injected);
-            await setProvider("MetaMask");
-            onClose();
-          }}
-        >
-          Metamask
-        </Button>
-        <Button
-          onClick={async () => {
-            await activate(WalletConnect);
-            await setProvider("WalletConnect");
-            onClose();
-          }}
-        >
-          WalletConnect
-        </Button>
-        <Button
-          onClick={async () => {
-            await activate(CoinbaseWallet);
-            await setProvider("CoinbaseWallet");
-            onClose();
-          }}
-        >
-          Coinbase Wallet
-        </Button>
+        <Button onClick={handleMetaMask}>Metamask</Button>
+        <Button onClick={handleWalletConnect}>WalletConnect</Button>
+        <Button onClick={handleCoinbaseWallet}>Coinbase Wallet</Button>
       </div>
     </Modal>
   );
