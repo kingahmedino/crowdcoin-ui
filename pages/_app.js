@@ -26,6 +26,7 @@ export default function App({ Component, pageProps, router }) {
           theme={{
             /** Put your mantine theme override here */
             colorScheme: "light",
+            fontFamily: "'Archivo', sans-serif",
           }}
         >
           <AppLayout

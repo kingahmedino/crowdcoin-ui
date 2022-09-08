@@ -1,1 +1,41 @@
 /* Wallet Modal */
+.modalH1 {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 35px;
+  margin: 0;
+  margin-bottom: 12px;
+}
+.modalP {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 26px;
+  color: #646e86;
+  margin: 0;
+  margin-bottom: 32px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.subText {
+  margin: 0;
+}
+/* Main */
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 44px;
+  color: #040404;
+}

@@ -1,4 +1,4 @@
-import { Button, Navbar } from "@mantine/core";
+import { Button, Navbar, SimpleGrid } from "@mantine/core";
 import { useRouter } from "next/router";
 import { useWeb3React } from "@web3-react/core";
 import ConnectWalletModal from "./Modal";
@@ -8,6 +8,7 @@ import {
   CoinbaseWallet,
   WalletConnect,
 } from "../../utils/connectors";
+import styles from "../../shared/styles/ConnectWallet.module.css";
 
 const ConnectWallet = () => {
   const router = useRouter();
@@ -53,8 +54,10 @@ const ConnectWallet = () => {
   }, [activate]);
 
   return (
-    <Navbar>
-      <Navbar.Section>{pid ? pid : "Dashboard"}</Navbar.Section>
+    <Navbar className={styles.container}>
+      <Navbar.Section className={styles.title}>
+        {pid ? pid : "Dashboard"}
+      </Navbar.Section>
       <Navbar.Section>
         {!active ? (
           <Button
@@ -72,9 +75,6 @@ const ConnectWallet = () => {
               },
             })}
           >
-            {/* {!active
-              ? "Connect Wallet"
-              : account.slice(0, 5) + "..." + account.slice(37, 42)} */}
             Connect Wallet
           </Button>
         ) : (
