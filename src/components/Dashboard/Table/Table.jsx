@@ -170,13 +170,22 @@ const DashbordTable = () => {
   ));
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "#fff",
+      }}
+    >
       <h3>Popular Campaigns</h3>
       <TextInput
         placeholder="Search campaign, validator or campaign link"
         mb="md"
         value={search}
         onChange={handleSearchChange}
+        styles={{
+          input: {
+            width: "55%",
+          },
+        }}
       />
       <ScrollArea
         sx={{ height: 300 }}
