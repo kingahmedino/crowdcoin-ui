@@ -54,7 +54,7 @@ const ConnectWallet = () => {
   }, [activate]);
 
   return (
-    <Navbar className={styles.container}>
+    <Navbar className={styles.navContainer}>
       <Navbar.Section className={styles.title}>
         {pid ? pid : "Dashboard"}
       </Navbar.Section>
