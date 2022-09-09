@@ -1,28 +1,17 @@
-import {
-  AppShell,
-  Navbar,
-  Header,
-  Footer,
-  Aside,
-  Text,
-  MediaQuery,
-  Burger,
-  useMantineTheme,
-} from "@mantine/core";
+import { AppShell, Navbar } from "@mantine/core";
+import { Nav } from "../components/Nav";
 
-
-export default function AppLayout({  Component, pageProps, router }) {
+export default function AppLayout({ Component, pageProps, router }) {
   return (
     <AppShell
-     
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
-      fixed
+      fixed={false}
       padding="md"
-      navbar={<nav></nav>}
-      header={<div></div>}
-      aside={
-        <div></div>
+      navbar={
+        <Navbar  width={{ base: "248px" }} height={"100vh"} p="xs">
+          <Nav />
+        </Navbar>
       }
     >
       <Component {...pageProps} />
