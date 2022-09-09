@@ -12,7 +12,7 @@ export default function AppLayout({ Component, pageProps, router }) {
         <Navbar  width={{ base: "248px" }} height={"100vh"} p="xs">
           <Nav />
         </Navbar>
-      }
+      } 
     >
       <Component {...pageProps} />
     </AppShell>
