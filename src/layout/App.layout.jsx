@@ -21,6 +21,7 @@ export default function AppLayout({ Component, pageProps, router }) {
           paddingLeft: 32,
           paddingRight: 32,
           backgroundColor: "rgba(242, 242, 242, 1)",
+          height: "100vh",
         },
       }}
     >

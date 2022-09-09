@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "id": "0",
+      "name": "ALS TokenIDO",
+      "validator": "Cyril Jones",
+      "address": "0x738383n3838xkx83839333",
+      "created_at": "2021-05-05T12:00:00Z",
+      "min_amount": "10000000000000000000"
+    },
+    {
+      "id": "1",
+      "name": "ALS TokenIDO",
+      "validator": "Cyril Jones",
+      "address": "0x738383n3838xkx83839333",
+      "created_at": "2022-09-09T12:00:00Z",
+      "min_amount": "10000000000000000000"
+    },
+    {
+      "id": "2",
+      "name": "ALS TokenIDO",
+      "validator": "Oyinbayode",
+      "address": "0x738383n3838xkx83839333",
+      "created_at": "2021-05-05T12:00:00Z",
+      "min_amount": "10000000000000000000"
+    }
+  ]
+}
