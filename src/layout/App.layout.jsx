@@ -10,20 +10,16 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 
-
-export default function AppLayout({  Component, pageProps, router }) {
+export default function AppLayout({ Component, pageProps, router }) {
   return (
     <AppShell
-     
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       fixed
       padding="md"
       navbar={<nav></nav>}
       header={<div></div>}
-      aside={
-        <div></div>
-      }
+      aside={<div></div>}
     >
       <Component {...pageProps} />
     </AppShell>
