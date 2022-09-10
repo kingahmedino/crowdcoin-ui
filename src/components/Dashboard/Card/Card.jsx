@@ -14,7 +14,15 @@ const DashbordCard = () => {
   return (
     <Grid>
       {Data.data.map((item) => (
-        <Grid.Col key={item.id} style={{}} span={4}>
+        <Grid.Col
+          xs={12}
+          sm={12}
+          md={6}
+          lg={4}
+          key={item.id}
+          style={{}}
+          span={4}
+        >
           <Link href={item.link}>
             <a
               style={{

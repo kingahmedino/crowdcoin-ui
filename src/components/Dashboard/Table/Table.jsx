@@ -224,9 +224,9 @@ const DashbordTable = () => {
         }}
       />
       <ScrollArea
-        sx={{ height: 300 }}
+        sx={{ height: 240 }}
         onScrollPositionChange={({ y }) => setScrolled(() => y !== 0)}
-        style={{ borderRadius: "8px 8px 0 0" }}
+        style={{ borderRadius: "8px 8px 8px 8px" }}
       >
         <Table
           horizontalSpacing="md"
