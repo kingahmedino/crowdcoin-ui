@@ -12,16 +12,17 @@ import {
 import React, { useState } from "react";
 import { keys } from "@mantine/utils";
 import Mockdata from "./data.json";
-// import {
-//   IconSelector,
-//   IconChevronDown,
-//   IconChevronUp,
-//   IconSearch,
-// } from "@tabler/icons";
+import {
+  IconSelector,
+  IconChevronDown,
+  IconChevronUp,
+  IconSearch,
+} from "@tabler/icons";
 
 import Moment from "react-moment";
 import { ethers } from "ethers";
 import Link from "next/link";
+import styles from "../../../shared/styles/Dashboard.module.css";
 
 const useStyles = createStyles((theme) => ({
   th: {
@@ -48,8 +49,9 @@ const useStyles = createStyles((theme) => ({
     position: "sticky",
     top: 0,
     backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : "#2563EB",
     transition: "box-shadow 150ms ease",
+    height: "45px",
 
     "&::after": {
       content: '""',
@@ -81,7 +83,14 @@ function Th({ children, reversed, sorted, onSort }) {
     <th className={classes.th}>
       <UnstyledButton className={classes.control} onClick={onSort}>
         <Group position="apart">
-          <Text weight={500} size="sm">
+          <Text
+            color="white"
+            weight={500}
+            size={12}
+            style={{
+              lineHeight: "13px",
+            }}
+          >
             {children}
           </Text>
           {/* <Center className={classes.icon}>
@@ -147,10 +156,32 @@ const DashbordTable = () => {
 
   const rows = sortedData.map((row) => (
     <tr key={row.id}>
-      <td>{row.name}</td>
-      <td>{row.validator}</td>
-      <td>{row.address.slice(0, 9) + "..."}</td>
-      <td>
+      <td
+        style={{
+          fontSize: "12px",
+        }}
+      >
+        {row.name}
+      </td>
+      <td
+        style={{
+          fontSize: "12px",
+        }}
+      >
+        {row.validator}
+      </td>
+      <td
+        style={{
+          fontSize: "12px",
+        }}
+      >
+        {row.address.slice(0, 9) + "..."}
+      </td>
+      <td
+        style={{
+          fontSize: "12px",
+        }}
+      >
         <Moment fromNow>{row.created_at}</Moment>
       </td>
       <td
@@ -159,41 +190,47 @@ const DashbordTable = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
+          fontSize: "12px",
         }}
       >
         <p>{ethers.utils.formatUnits(row.min_amount)} ETH</p>{" "}
         <Link href="/">
-          <a>View</a>
+          <a className={styles.dashboardTableViewButton}>View</a>
         </Link>
       </td>
     </tr>
   ));
 
   return (
-    <div
-      style={{
-        backgroundColor: "#fff",
-      }}
-    >
-      <h3>Popular Campaigns</h3>
+    <div className={styles.dashboardTableContainer}>
+      <h3 className={styles.dashboardTableHeader}>Popular Campaigns</h3>
       <TextInput
         placeholder="Search campaign, validator or campaign link"
-        mb="md"
         value={search}
         onChange={handleSearchChange}
+        icon={<IconSearch size={16} />}
         styles={{
           input: {
-            width: "55%",
+            width: "100%",
+            maxWidth: "396px",
+            borderRadius: "16px",
+            height: "48px",
+            padding: "0 16px",
+            margin: "0",
+          },
+          root: {
+            marginBottom: "32px",
           },
         }}
       />
       <ScrollArea
         sx={{ height: 300 }}
         onScrollPositionChange={({ y }) => setScrolled(() => y !== 0)}
+        style={{ borderRadius: "8px 8px 0 0" }}
       >
         <Table
           horizontalSpacing="md"
-          verticalSpacing="xs"
+          verticalSpacing={0}
           sx={{ minWidth: 700 }}
           striped
           highlightOnHover
@@ -239,7 +276,11 @@ const DashbordTable = () => {
               </Th>
             </tr>
           </thead>
-          <tbody>
+          <tbody
+            style={{
+              overflowY: "scroll",
+            }}
+          >
             {rows.length > 0 ? (
               rows
             ) : (
