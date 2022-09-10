@@ -3,6 +3,7 @@ import { MantineProvider } from "@mantine/core";
 import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 import AppLayout from "../src/layout/App.layout";
+import OurGlobalStyles from "../src/shared/GlobalStyles";
 
 function getLibrary(provider) {
   return new Web3Provider(provider);
@@ -29,6 +30,7 @@ export default function App({ Component, pageProps, router }) {
             fontFamily: "'Archivo', sans-serif",
           }}
         >
+          <OurGlobalStyles />
           <AppLayout
             Component={Component}
             router={router}
