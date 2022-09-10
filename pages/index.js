@@ -14,10 +14,10 @@ export default function Home() {
       <ConnectWallet />
       <DashbordCard />
       <Grid>
-        <Grid.Col x xs={12} lg={8} span={8}>
+        <Grid.Col xs={12} lg={8} span={8}>
           <DashbordTable />
         </Grid.Col>
-        <Grid.Col sm={12} lg={4} span={4}>
+        <Grid.Col xs={12} lg={4} span={4}>
           <DashboardCampaign />
         </Grid.Col>
       </Grid>
