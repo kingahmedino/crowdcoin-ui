@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "image": "Campaign.svg",
+      "content": "Create campaign",
+      "link": "/"
+    },
+    {
+      "id": 1,
+      "image": "Contributions.svg",
+      "content": "My contributions",
+      "link": "/"
+    },
+    {
+      "id": 2,
+      "image": "Withdrawal.svg",
+      "content": "Request withdrawal",
+      "link": "/"
+    }
+  ]
+}

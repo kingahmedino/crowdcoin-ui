@@ -53,6 +53,7 @@ export function Nav() {
             label="Dashboard"
             icon={<DashboardIcon />}
             className={classes.myCustomButton}
+            active={router.pathname === "/"}
           />
         </Link>
 

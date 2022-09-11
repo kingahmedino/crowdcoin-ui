@@ -1,0 +1,100 @@
+/* Dashboard Table */
+.dashboardTableContainer {
+  background-color: #fff;
+  padding: 32px;
+  margin-top: 48px;
+  border-radius: 24px;
+  margin-bottom: 35px;
+  height: 504px;
+}
+.dashboardTableHeader {
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 35px;
+  color: #040404;
+  max-width: 280px;
+  width: 100%;
+}
+.dashboardTableViewButton {
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+/* Dashboard My Campaign Section */
+.dashboardCampaignContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  margin-top: 48px;
+  border-radius: 24px;
+  height: 504px;
+}
+
+.dashboardCampaignHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 16px;
+  margin-right: 16px;
+  padding-top: 32px;
+  font-size: 32px;
+  line-height: 35px;
+  color: #040404;
+  font-weight: 400;
+}
+
+.dashboardCampaignBody {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.dashboardCampaignBodyActive {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.dashboardCampaignBodyCard {
+  border: 1px solid #3770cf;
+  width: 100%;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 85px;
+  color: #040404;
+  margin-bottom: 24px;
+}
+
+.dashboardCampaignBodyCardLeft {
+  display: flex;
+  flex-direction: column;
+  height: 53px;
+  justify-content: space-between;
+}
+
+.dashboardCampaignBodyCardLeftHeader {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 13px;
+}
+
+.dashboardCampaignBodyCardLeftP1,
+.dashboardCampaignBodyCardLeftP2 {
+  margin: 0;
+  font-size: 10px;
+  line-height: 11px;
+  font-weight: 400;
+  color: #414e68;
+}
+
+.dashboardCampaignBodyCardLeftP2 {
+  color: #040404;
+}
