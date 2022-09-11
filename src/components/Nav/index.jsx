@@ -48,11 +48,14 @@ export function Nav() {
       />
 
       <div className={classes.nav}>
-        <NavLink
-          label="Dashboard"
-          icon={<DashboardIcon />}
-          className={classes.myCustomButton}
-        />
+        <Link href="/" passHref>
+          <NavLink
+            label="Dashboard"
+            icon={<DashboardIcon />}
+            className={classes.myCustomButton}
+          />
+        </Link>
+
         <NavLink
           label="Campaigns"
           icon={<CampaignsIcon />}
@@ -75,16 +78,22 @@ export function Nav() {
             />
           </Link>
         </NavLink>
-        <NavLink
-          label="Withdrawals"
-          icon={<WithdrawalIcon />}
-          className={classes.myCustomButton}
-        />
-        <NavLink
-          label="My Contributions"
-          icon={<DonationsIcon />}
-          className={classes.myCustomButton}
-        />
+
+        <Link href="/" passHref>
+          <NavLink
+            label="Withdrawals"
+            icon={<WithdrawalIcon />}
+            className={classes.myCustomButton}
+          />
+        </Link>
+
+        <Link href="/" passHref>
+          <NavLink
+            label="My Contributions"
+            icon={<DonationsIcon />}
+            className={classes.myCustomButton}
+          />
+        </Link>
       </div>
     </>
   );
