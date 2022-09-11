@@ -11,7 +11,6 @@ import styles from "../src/shared/styles/Home.module.css";
 export default function Home() {
   return (
     <div className={styles.container}>
-      <ConnectWallet />
       <DashbordCard />
       <Grid>
         <Grid.Col xs={12} lg={8} span={8}>

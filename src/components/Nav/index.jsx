@@ -80,7 +80,7 @@ export function Nav() {
           </Link>
         </NavLink>
 
-        <Link href="/" passHref>
+        <Link href="/withdrawals" passHref>
           <NavLink
             label="Withdrawals"
             icon={<WithdrawalIcon />}
@@ -88,7 +88,7 @@ export function Nav() {
           />
         </Link>
 
-        <Link href="/" passHref>
+        <Link href="/contributions" passHref>
           <NavLink
             label="My Contributions"
             icon={<DonationsIcon />}

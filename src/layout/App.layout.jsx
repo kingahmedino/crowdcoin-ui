@@ -6,7 +6,7 @@ export default function AppLayout({ Component, pageProps, router }) {
     <AppShell
       navbarOffsetBreakpoint="sm"
       fixed={false}
-      header={<Header height={60} p="xs"><ConnectWallet/></Header>}
+      header={<Header height={60} style={{display:"flex", border: "none", justifyContent: "flex-end", position:"absolute", backgroundColor: "transparent"}}   p="xs"><ConnectWallet/></Header>}
       navbar={
         <Navbar width={{ base: "248px" }} height={"100vh"} p="xs">
           <Nav />

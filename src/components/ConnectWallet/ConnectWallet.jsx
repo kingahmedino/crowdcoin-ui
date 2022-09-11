@@ -54,51 +54,46 @@ const ConnectWallet = () => {
   }, [activate]);
 
   return (
-    <Navbar className={styles.navContainer}>
-      <Navbar.Section className={styles.title}>
-        {pid ? pid : "Dashboard"}
-      </Navbar.Section>
-      <Navbar.Section>
-        {!active ? (
-          <Button
-            onClick={() => setIsOpen(true)}
-            styles={(theme) => ({
-              root: {
-                backgroundColor: "#2563EB",
-                padding: "16px 22.5px",
-                fontWeight: 400,
-                fontSize: 24,
-                lineHeight: 24,
-                height: 58,
-                //   color: "#fff",
-                borderRadius: 24,
-              },
-            })}
-          >
-            Connect Wallet
-          </Button>
-        ) : (
-          <Button
-            onClick={disconnect}
-            styles={(theme) => ({
-              root: {
-                backgroundColor: "#2563EB",
-                padding: "16px 22.5px",
-                fontWeight: 400,
-                fontSize: 24,
-                lineHeight: 24,
-                height: 58,
-                //   color: "#fff",
-                borderRadius: 24,
-              },
-            })}
-          >
-            {account.slice(0, 5) + "..." + account.slice(37, 42)}
-          </Button>
-        )}
-      </Navbar.Section>
-      <ConnectWalletModal opened={isOpen} onClose={() => setIsOpen(false)} />
-    </Navbar>
+    <>
+    {!active ? (
+      <Button
+        onClick={() => setIsOpen(true)}
+        styles={(theme) => ({
+          root: {
+            backgroundColor: "#2563EB",
+            padding: "16px 22.5px",
+            fontWeight: 400,
+            fontSize: 24,
+            lineHeight: 24,
+            height: 58,
+            //   color: "#fff",
+            borderRadius: 24,
+          },
+        })}
+      >
+        Connect Wallet
+      </Button>
+    ) : (
+      <Button
+        onClick={disconnect}
+        styles={(theme) => ({
+          root: {
+            backgroundColor: "#2563EB",
+            padding: "16px 22.5px",
+            fontWeight: 400,
+            fontSize: 24,
+            lineHeight: 24,
+            height: 58,
+            //   color: "#fff",
+            borderRadius: 24,
+          },
+        })}
+      >
+        {account.slice(0, 5) + "..." + account.slice(37, 42)}
+      </Button>
+    )}
+  <ConnectWalletModal opened={isOpen} onClose={() => setIsOpen(false)} />
+    </>
   );
 };
 
