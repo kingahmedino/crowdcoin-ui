@@ -1,4 +1,8 @@
-import { Grid } from "@mantine/core";
+import { Card, Grid } from "@mantine/core";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import ConnectWallet from "../src/components/ConnectWallet/ConnectWallet";
 import DashbordCard from "../src/components/Dashboard/Card/Card";
 import DashboardCampaign from "../src/components/Dashboard/MyCampaign/MyCampaign";
 import DashbordTable from "../src/components/Dashboard/Table/Table";
