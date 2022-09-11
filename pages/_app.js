@@ -4,12 +4,15 @@ import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 import AppLayout from "../src/layout/App.layout";
 import OurGlobalStyles from "../src/shared/GlobalStyles";
+import { useRouter } from "next/router";
 
 function getLibrary(provider) {
   return new Web3Provider(provider);
 }
 
 export default function App({ Component, pageProps, router }) {
+  router = useRouter();
+
   return (
     <>
       <Head>
