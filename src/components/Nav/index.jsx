@@ -48,11 +48,15 @@ export function Nav() {
       />
 
       <div className={classes.nav}>
-        <NavLink
-          label="Dashboard"
-          icon={<DashboardIcon />}
-          className={classes.myCustomButton}
-        />
+        <Link href="/" passHref>
+          <NavLink
+            label="Dashboard"
+            icon={<DashboardIcon />}
+            className={classes.myCustomButton}
+            active={router.pathname === "/"}
+          />
+        </Link>
+
         <NavLink
           label="Campaigns"
           icon={<CampaignsIcon />}
