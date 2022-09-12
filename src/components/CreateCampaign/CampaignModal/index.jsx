@@ -1,11 +1,25 @@
 import { Button, Modal, Box } from "@mantine/core";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
-const CampaignModal = ({ opened, onClose }) => {
+const CampaignModal = ({ opened, onClose, reset }) => {
+  const router = useRouter();
+
   const data =
     typeof window !== "undefined" &&
     JSON.parse(localStorage.getItem("campaignData"));
 
-  const handleCreateCampaign = () => {};
+  const [loading, setLoading] = useState(false);
+
+  const handleCreateCampaign = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      reset();
+      onClose();
+      router.push("/campaigns/myCampaigns");
+    }, 3000);
+  };
 
   return (
     <Modal
@@ -235,6 +249,7 @@ const CampaignModal = ({ opened, onClose }) => {
             Cancel
           </Button>
           <Button
+            loading={loading}
             onClick={handleCreateCampaign}
             sx={{
               marginLeft: "24px",
@@ -246,6 +261,7 @@ const CampaignModal = ({ opened, onClose }) => {
               fontSize: "18.3672px",
               lineHeight: "20px",
               color: "#FFFFFF",
+              maxWidth: loading ? "214px" : "auto",
             }}
           >
             Create Campaign

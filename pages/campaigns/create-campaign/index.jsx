@@ -38,7 +38,7 @@ const CreateCampaign = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     trigger,
     formState: { errors },
   } = useForm({
@@ -206,7 +206,11 @@ const CreateCampaign = () => {
           </Button>
         )}
       </form>
-      <CampaignModal opened={opened} onClose={() => setOpened(() => false)} />
+      <CampaignModal
+        reset={reset}
+        opened={opened}
+        onClose={() => setOpened(() => false)}
+      />
     </>
   );
 };
