@@ -1,54 +1,54 @@
-import { Button, Navbar, SimpleGrid } from "@mantine/core";
-import { useRouter } from "next/router";
-import { useWeb3React } from "@web3-react/core";
-import ConnectWalletModal from "./Modal";
-import { useEffect, useState } from "react";
-import {
-  Injected,
-  CoinbaseWallet,
-  WalletConnect,
-} from "../../utils/connectors";
-import styles from "../../shared/styles/ConnectWallet.module.css";
+import { Button, Navbar, SimpleGrid } from '@mantine/core'
+import { useRouter } from 'next/router'
+import { useWeb3React } from '@web3-react/core'
+import ConnectWalletModal from './Modal'
+import { useEffect, useState } from 'react'
+import { Injected, CoinbaseWallet, WalletConnect } from '../../utils/connectors'
+import styles from '../../shared/styles/ConnectWallet.module.css'
 
 const ConnectWallet = () => {
-  const { activate, deactivate, active, account } = useWeb3React();
+  const router = useRouter()
+  const { pid } = router.query
 
-  const [isOpen, setIsOpen] = useState(false);
+  const { activate, deactivate, active, account } = useWeb3React()
+
+  const [isOpen, setIsOpen] = useState(false)
 
   // Handle disconnect wallet
   const refreshState = () => {
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("provider", undefined);
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('provider', undefined)
 
-      window.localStorage.setItem("isWalletConnected", false);
+      window.localStorage.setItem('isWalletConnected', false)
     }
-  };
+  }
+
   const disconnect = () => {
-    refreshState();
-    deactivate();
-  };
+    refreshState()
+    deactivate()
+  }
 
   // Persist provider on browser reload
   useEffect(() => {
     const connectWalletOnPageLoad = async () => {
-      if (typeof window !== "undefined") {
-        if (window.localStorage?.getItem("isWalletConnected") === "true") {
-          if (window.localStorage?.getItem("provider") === "MetaMask") {
-            await activate(Injected);
+      if (typeof window !== 'undefined') {
+        if (window.localStorage?.getItem('isWalletConnected') === 'true') {
+          if (window.localStorage?.getItem('provider') === 'MetaMask') {
+            await activate(Injected)
           } else if (
-            window.localStorage?.getItem("provider") === "WalletConnect"
+            window.localStorage?.getItem('provider') === 'WalletConnect'
           ) {
-            await activate(WalletConnect);
+            await activate(WalletConnect)
           } else if (
-            window.localStorage?.getItem("provider") === "CoinbaseWallet"
+            window.localStorage?.getItem('provider') === 'CoinbaseWallet'
           ) {
-            await activate(CoinbaseWallet);
+            await activate(CoinbaseWallet)
           }
         }
       }
-    };
-    connectWalletOnPageLoad();
-  }, [activate]);
+    }
+    connectWalletOnPageLoad()
+  }, [activate])
 
   return (
     <>
@@ -91,7 +91,7 @@ const ConnectWallet = () => {
       )}
       <ConnectWalletModal opened={isOpen} onClose={() => setIsOpen(false)} />
     </>
-  );
-};
+  )
+}
 
-export default ConnectWallet;
+export default ConnectWallet
