@@ -57,8 +57,8 @@ const ConnectWallet = () => {
           onClick={() => setIsOpen(true)}
           styles={(theme) => ({
             root: {
-              backgroundColor: '#2563EB',
-              padding: '16px 22.5px',
+              backgroundColor: "#2563EB",
+              padding: "16px 22.5px",
               fontWeight: 400,
               fontSize: 24,
               lineHeight: 24,
@@ -75,8 +75,8 @@ const ConnectWallet = () => {
           onClick={disconnect}
           styles={(theme) => ({
             root: {
-              backgroundColor: '#2563EB',
-              padding: '16px 22.5px',
+              backgroundColor: "#2563EB",
+              padding: "16px 22.5px",
               fontWeight: 400,
               fontSize: 24,
               lineHeight: 24,
@@ -86,7 +86,7 @@ const ConnectWallet = () => {
             },
           })}
         >
-          {account.slice(0, 5) + '...' + account.slice(37, 42)}
+          {account.slice(0, 5) + "..." + account.slice(37, 42)}
         </Button>
       )}
       <ConnectWalletModal opened={isOpen} onClose={() => setIsOpen(false)} />

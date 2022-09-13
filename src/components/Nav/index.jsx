@@ -29,6 +29,10 @@ export function Nav() {
         backgroundColor: theme.colorScheme === "dark" ? "#2563EB" : "#2563EB",
         color: theme.white,
       },
+      "&:active": {
+        backgroundColor: theme.colorScheme === "dark" ? "#2563EB" : "#2563EB",
+        color: theme.white,
+      },
     },
   }));
 
@@ -50,6 +54,7 @@ export function Nav() {
       <div className={classes.nav}>
         <Link href="/" passHref>
           <NavLink
+          
             label="Dashboard"
             icon={<DashboardIcon />}
             className={classes.myCustomButton}
@@ -61,6 +66,7 @@ export function Nav() {
           label="Campaigns"
           icon={<CampaignsIcon />}
           className={classes.myCustomButton}
+          active={router.pathname.includes("/campaigns")}
         >
           <Link href="/campaigns/myCampaigns" passHref>
             <NavLink
