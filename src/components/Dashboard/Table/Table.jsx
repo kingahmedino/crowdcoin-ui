@@ -20,7 +20,7 @@ import {
 } from '@tabler/icons'
 
 import Moment from 'react-moment'
-import { ethers } from 'ethers'
+import { ethers, BigNumber } from 'ethers'
 import Link from 'next/link'
 import styles from '../../../shared/styles/Dashboard.module.css'
 
@@ -148,6 +148,7 @@ const DashbordTable = (props) => {
     obj.creator = b['9']
     obj.description = b['8']
 
+    console.log(obj.created_at)
     return obj
   })
 
@@ -319,7 +320,7 @@ const DashbordTable = (props) => {
               rows
             ) : (
               <tr>
-                <td colSpan={Object.keys(data[0]).length}>
+                <td colSpan={5}>
                   <Text weight={500} align="center">
                     Nothing found
                   </Text>
