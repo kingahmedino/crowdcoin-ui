@@ -1,6 +1,7 @@
-import { Button, Modal, Box } from "@mantine/core";
+import { Button, Modal, Box, Notification } from "@mantine/core";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Notify from "./Notify";
 
 const CampaignModal = ({ opened, onClose, reset }) => {
   const router = useRouter();
@@ -16,8 +17,9 @@ const CampaignModal = ({ opened, onClose, reset }) => {
     setTimeout(() => {
       setLoading(false);
       reset();
+      router.push("/campaigns/share-campaign");
+      Notify();
       onClose();
-      router.push("/campaigns/myCampaigns");
     }, 3000);
   };
 
