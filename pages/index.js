@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import ConnectWallet from '../src/components/ConnectWallet/ConnectWallet'
-import { ethers } from 'ethers'
+import { ethers, BigNumber } from 'ethers'
 import CampaignFactoryABI from '../ethereum/CampaignFactoryABI.json'
 import CampaignABI from '../ethereum/CampaignABI.json'
 import DashbordCard from '../src/components/Dashboard/Card/Card'
@@ -34,12 +34,13 @@ export async function getServerSideProps() {
   )
 
   const campaignFactoryInstance = new ethers.Contract(
-    '0x6E3C134A71998F68947DabE1Bd13557e7D06aAfc',
+    '0x107F67F583580F0B6AD61125CC37901A8B08dA83',
     CampaignFactoryABI,
     provider,
   )
 
   const campaigns = await campaignFactoryInstance.getDeployedCampaigns()
+  const a = BigNumber.from('1000')
 
   const campaignsData = await Promise.all(
     campaigns.map(async (campaign) => {
@@ -51,6 +52,7 @@ export async function getServerSideProps() {
       let campaignSummary = await campaignInstance.getSummary()
       let obj = Object.assign({}, campaignSummary)
       obj['10'] = campaign
+      obj['5'] = BigNumber.from(obj['5']).mul(a)
       return obj
     }),
   )
