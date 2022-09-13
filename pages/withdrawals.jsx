@@ -45,7 +45,7 @@ export default function Withdrawals() {
             marginBottom: theme.spacing.md,
           },
         })}
-        defaultValue="all"
+        defaultValue="all" 
       >
         <Tabs.List>
           <Tabs.Tab value="all">All withdrawals</Tabs.Tab>
