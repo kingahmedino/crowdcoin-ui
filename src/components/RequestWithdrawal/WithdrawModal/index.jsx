@@ -88,8 +88,7 @@ const WithdrawModal = ({
             }}
             component="p"
           >
-            You are about to request for a withdrawal from the
-            {campaignData?.campaign_name} campaign.
+            You are about to request for a withdrawal from the {campaignData?.campaign_name} campaign.
           </Box>
           <Box
             sx={{

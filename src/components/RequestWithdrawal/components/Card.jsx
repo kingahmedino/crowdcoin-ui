@@ -43,7 +43,7 @@ const Card = ({
         >
           {campaign_name}
         </h3>
-        <p style={{ color: "black", margin: 0, fontSize: 16 }}>
+        <p style={{ color: "black", marginTop: 10, fontSize: 16 }}>
           {amount_contributed} ETH
         </p>
       </Box>

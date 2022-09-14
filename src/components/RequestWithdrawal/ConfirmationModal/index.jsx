@@ -2,6 +2,9 @@ import { Button, Modal, Box, Notification } from "@mantine/core";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Notify from "./Notify";
+import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
+import CampaignABI from '../../../../ethereum/CampaignABI.json'
 
 const ConfirmationModal = ({
   opened,
@@ -11,17 +14,36 @@ const ConfirmationModal = ({
   campaignData,
 }) => {
 
+  const { active, library } = useWeb3React()
+
   const [loading, setLoading] = useState(false);
   const requestWithdrawal = async () => {
     try {
+     if (active) {
       setLoading(() => true);
-      setTimeout(() => {
+        const campaignInstance = new ethers.Contract(
+          campaignData.address,
+          CampaignABI,
+          library.getSigner(),
+        )
+
+        await campaignInstance
+          .createRequest(
+            withDrawalData.withdrawalReason,
+            ethers.utils.parseUnits(withDrawalData.amount, 'ether'),
+            withDrawalData.destinationAddress,
+            { gasLimit: 200000 }
+          )
+          .then((tx) => tx.wait())
+
+        setTimeout(() => {
         onClose();
         setLoading(() => false);
       }, 3000);
-      Notify();
+      Notify(withDrawalData, campaignData.campaign_name);
+      }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
   
@@ -150,7 +172,7 @@ const ConfirmationModal = ({
               }}
               component="p"
             >
-             Feminist Co.
+             {campaignData?.validator_name}
             </Box>
           </Box>
           <Box

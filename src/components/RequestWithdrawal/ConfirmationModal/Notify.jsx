@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Box, Button } from "@mantine/core";
 import { Router } from "next/router";
 
-export default function Notify() {
+export default function Notify(withdrawalData, campaignName) {
   const message = () => {
     return (
       <Box
@@ -15,8 +15,7 @@ export default function Notify() {
           width: "100%",
         }}
       >
-        You have sucessfully initiated a 10 ETH withdrawal from End SARS
-        campaign and a mail has been sent to the contributors of this campaign.
+        You have sucessfully initiated a {withdrawalData.amount} ETH withdrawal from {campaignName} and a mail has been sent to the contributors of this campaign.
         You can view the request progress in Withdrawals.
         <Button
           onClick={() => {
