@@ -12,19 +12,19 @@ export const Default = () => {
     // TableData.EscrowAddress,
     // TableData.Contribution,
     {
-      name: "Escrow Address",
+      name: "Escrow address",
       value: TableData.EscrowAddress,
     },
     {
-      name: "Validator Address",
+      name: "Validator address",
       value: TableData.ValidatorAddress,
     },
     {
-      name: "Minimum Contribution",
+      name: "Minimum dontribution",
       value: `${TableData.Contribution} ETH`,
     },
     {
-      name: "Campaign Description",
+      name: "Campaign description",
       value: "Description",
     },
   ];
@@ -39,16 +39,56 @@ export const Default = () => {
           fontSize: "16px",
           lineHeight: "17px",
           color: "#646E86",
+          marginBottom: "32px",
         }}
         component="p"
       >
         Validator: {TableData.ValidatorName}
       </Box>
-      <Box>
+      <Box
+        sx={{
+          border: "1px solid #7EB4C5",
+          borderRadius: "16px",
+          padding: "24px",
+          color: "#040404",
+        }}
+      >
         {ObjToArr.map((item, index) => (
-          <Box key={index}>
-            <Box component="p">{item.name}</Box>
-            <Box component="p">{item.value}</Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+
+              justifyContent: "space-between",
+              height: "55px",
+              marginBottom: "40px",
+            }}
+            key={index}
+          >
+            <Box
+              sx={{
+                margin: 0,
+                fontSize: "24px",
+                lineHeight: "26px",
+                fontWeight: "400",
+                marginBottom: "8px",
+              }}
+              component="p"
+            >
+              {item.name}
+            </Box>
+            <Box
+              sx={{
+                margin: 0,
+                fontSize: "16px",
+                lineHeight: "17px",
+                fontWeight: "400",
+                color: "#646E86",
+              }}
+              component="p"
+            >
+              {item.value}
+            </Box>
           </Box>
         ))}
       </Box>
