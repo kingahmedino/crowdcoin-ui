@@ -9,6 +9,8 @@ export default function AppLayout({ Component, pageProps, router }) {
       ? "Dashboard"
       : pathname.includes("campaign")
       ? "Campaigns"
+      : pathname.includes("request_withdrawal")
+      ? "Request withdrawal"
       : pathname.includes("withdrawal")
       ? "Withdrawals"
       : pathname.includes("contribution")

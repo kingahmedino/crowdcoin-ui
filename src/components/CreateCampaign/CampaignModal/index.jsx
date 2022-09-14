@@ -110,7 +110,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               }}
               component="p"
             >
-              {data.campaignName}
+              {data?.campaignName}
             </Box>
           </Box>
           <Box
@@ -147,7 +147,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               }}
               component="p"
             >
-              {data.validatorName}
+              {data?.validatorName}
             </Box>
           </Box>
           <Box
@@ -184,7 +184,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               }}
               component="p"
             >
-              {data.minAmount} ETH{" "}
+              {data?.minAmount} ETH{" "}
             </Box>
           </Box>
           <Box
@@ -221,7 +221,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               }}
               component="p"
             >
-              {data.campaignDescription}
+              {data?.campaignDescription}
             </Box>
           </Box>
         </Box>
