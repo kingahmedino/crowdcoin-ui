@@ -83,6 +83,8 @@ const CreateCampaign = () => {
         setStep(() => 3);
       }
     }
+
+    console.log("step", step);
   }
 
   function onSubmit(data) {

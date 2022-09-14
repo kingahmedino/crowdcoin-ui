@@ -6,9 +6,8 @@ import {
   TextInput,
   Textarea,
 } from "@mantine/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Notify from "./Notify";
 import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,29 +19,28 @@ const schema = yup.object({
   withdrawalReason: yup.string().required("Withdrawal Reason is required"),
 });
 
-const WithdrawModal = ({ opened, onClose, campaignData }) => {
+const WithdrawModal = ({
+  opened,
+  onClose,
+  campaignData,
+  setWithDrawalData,
+}) => {
   const [loading, setLoading] = useState(false);
-
   // Keep Track of Form Data
   const {
     register,
     handleSubmit,
-    reset,
-    trigger,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    mode: "onChange",
   });
 
   function onSubmit(data) {
     try {
       setLoading(() => true);
-      setTimeout(() => {
-        onClose();
-        setOpened(() => false);
-        setLoading(() => false);
-      }, 3000);
+      onClose();
+      setLoading(() => false);
+      setWithDrawalData(data);
     } catch (error) {
       console.log(error);
     }
@@ -128,6 +126,7 @@ const WithdrawModal = ({ opened, onClose, campaignData }) => {
                   marginBottom: !errors.validatorName ? "58.6px" : "0px",
                 }}
                 placeholder="Total amount withdrawable for this campaign is 70 ETH"
+                error={errors?.amount ? true : false}
                 styles={{
                   input: {
                     marginTop: "16px",
@@ -182,6 +181,7 @@ const WithdrawModal = ({ opened, onClose, campaignData }) => {
                 style={{
                   marginBottom: !errors.validatorName ? "58.6px" : "0px",
                 }}
+                error={errors?.destinationAdress ? true : false}
                 placeholder="Enter address"
                 styles={{
                   input: {
@@ -196,7 +196,7 @@ const WithdrawModal = ({ opened, onClose, campaignData }) => {
                     fontSize: "24px",
                   },
                 }}
-                {...register("destinationAdress")}
+                {...register("destinationAddress")}
               />
             </Box>
           </Box>
@@ -236,6 +236,7 @@ const WithdrawModal = ({ opened, onClose, campaignData }) => {
                 style={{
                   marginBottom: !errors.validatorName ? "58.6px" : "0px",
                 }}
+                error={errors?.withdrawalReason ? true : false}
                 styles={{
                   input: {
                     marginTop: "16px",
@@ -289,6 +290,7 @@ const WithdrawModal = ({ opened, onClose, campaignData }) => {
             </Button>
             <Button
               type="submit"
+              onClick={handleSubmit(onSubmit)}
               loading={loading}
               sx={{
                 marginLeft: "24px",

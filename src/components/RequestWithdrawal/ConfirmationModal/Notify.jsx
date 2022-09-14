@@ -1,6 +1,7 @@
 import { showNotification } from "@mantine/notifications";
 import Link from "next/link";
-import { Box } from "@mantine/core";
+import { Box, Button } from "@mantine/core";
+import { Router } from "next/router";
 
 export default function Notify() {
   const message = () => {
@@ -14,24 +15,22 @@ export default function Notify() {
           width: "100%",
         }}
       >
-        You have sucessfully created a new campaign, visit{" "}
-        <Link href="https://etherscan.io" target="_blank">
-          <a
-            style={{
-              color: "#16A34A",
-              textDecoration: "underline",
-            }}
-          >
-            etherscan
-          </a>
-        </Link>{" "}
-        to check the detail of this transaction.
+        You have sucessfully initiated a 10 ETH withdrawal from End SARS
+        campaign and a mail has been sent to the contributors of this campaign.
+        You can view the request progress in Withdrawals.
+        <Button
+          onClick={() => {
+            router.push("/campaigns/withdrawals");
+          }}
+        >
+          Go to withdrawals
+        </Button>
       </Box>
     );
   };
 
   return showNotification({
-    title: "New campaign created successfully",
+    title: "Withdrawal request successful",
     message: message(),
     sx: {
       color: "#16A34A",
@@ -51,7 +50,7 @@ export default function Notify() {
 
       root: {
         padding: "32px 16px",
-        backgroundColor: "rgba(134, 239, 172, 0.6)",
+        backgroundColor: "#000000",
         border: "1px solid #22c55e",
         borderRadius: 16,
         height: "auto",
@@ -78,6 +77,7 @@ export default function Notify() {
         />
       </svg>
     ),
-    disallowClose: true,
+    disallowClose: false,
+    autoClose: false,
   });
 }

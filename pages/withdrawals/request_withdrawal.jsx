@@ -7,17 +7,17 @@ import * as yup from "yup";
 import { Box } from "@mantine/core";
 import { LeftArrowIcon } from "../../src/components/RequestWithdrawal/LeftArrow";
 import WithdrawModal from "../../src/components/RequestWithdrawal/WithdrawModal";
-
+import ConfirmationModal from "../../src/components/RequestWithdrawal/ConfirmationModal";
 
 const CreateCampaign = () => {
   const [step, setStep] = useState(0);
-
+  const [withDrawalData, setWithDrawalData] = useState(null);
   const [campaignData, setCampaignData] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // Modal State
   const [opened, setOpened] = useState(false);
-
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   useEffect(() => {
     if (campaignData) {
       console.log(campaignData);
@@ -35,7 +35,17 @@ const CreateCampaign = () => {
       <WithdrawModal
         campaignData={campaignData}
         opened={opened}
-        onClose={() => setOpened(() => false)}
+        setWithDrawalData={setWithDrawalData}
+        onClose={() => {
+          setOpened(() => false);
+          setOpenConfirmationModal(true);
+        }}
+      />
+      <ConfirmationModal
+        campaignData={campaignData}
+        opened={openConfirmationModal}
+        withDrawalData={withDrawalData}
+        onClose={() => setOpenConfirmationModal(() => false)}
       />
     </>
   );
