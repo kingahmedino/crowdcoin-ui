@@ -139,7 +139,7 @@ const DashbordTable = (props) => {
     obj.name = b['6']
     obj.validator = b['7']
     obj.address = b['10']
-    obj.created_at = b['5']
+    obj.created_at = ethers.utils.formatEther(b['5']) * 1e18
     obj.min_amount = b['0']
     obj.balance = b['1']
     obj.total_contributed = b['2']
@@ -148,7 +148,6 @@ const DashbordTable = (props) => {
     obj.creator = b['9']
     obj.description = b['8']
 
-    console.log(obj.created_at)
     return obj
   })
 

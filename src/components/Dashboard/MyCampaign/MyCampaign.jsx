@@ -19,7 +19,6 @@ const DashboardCampaign = () => {
     const myCampaigns = async () => {
       try {
         if (data.length == 0 && active) {
-          console.log('myCampaigns')
           const provider = new ethers.providers.JsonRpcProvider(
             'https://goerli.infura.io/v3/adaa638d09ba451589fc8a00235e3489',
           )
@@ -61,7 +60,6 @@ const DashboardCampaign = () => {
             }),
           )
 
-          console.log(myCampaignsData)
           setData(myCampaignsData)
         }
       } catch (err) {
