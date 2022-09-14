@@ -3,25 +3,28 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Notify from "./Notify";
 
-const CampaignModal = ({ opened, onClose, reset }) => {
-  const router = useRouter();
-
-  const data =
-    typeof window !== "undefined" &&
-    JSON.parse(localStorage.getItem("campaignData"));
+const ConfirmationModal = ({
+  opened,
+  onClose,
+  reset,
+  withDrawalData,
+  campaignData,
+}) => {
 
   const [loading, setLoading] = useState(false);
-
-  const handleCreateCampaign = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      reset();
-      router.push("/campaigns/share-campaign");
+  const requestWithdrawal = async () => {
+    try {
+      setLoading(() => true);
+      setTimeout(() => {
+        onClose();
+        setLoading(() => false);
+      }, 3000);
       Notify();
-      onClose();
-    }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
   };
+  
 
   return (
     <Modal
@@ -64,7 +67,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
           }}
           component="p"
         >
-          You are about to create a new campaign
+          You are about to initiate a withdrawal from the campaing End SARS.
         </Box>
         <Box
           sx={{
@@ -110,7 +113,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               }}
               component="p"
             >
-              {data?.campaignName}
+              {campaignData?.campaign_name}
             </Box>
           </Box>
           <Box
@@ -147,7 +150,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               }}
               component="p"
             >
-              {data?.validatorName}
+             Feminist Co.
             </Box>
           </Box>
           <Box
@@ -156,7 +159,6 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               flexDirection: "column",
               justifyContent: "space-between",
               height: "51px",
-              maxWidth: "250px",
               width: "100%",
 
               marginBottom: "40px",
@@ -172,7 +174,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               }}
               component="p"
             >
-              Minimum contribution
+              Withdrawal request amount
             </Box>
             <Box
               sx={{
@@ -184,7 +186,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               }}
               component="p"
             >
-              {data?.minAmount} ETH{" "}
+              {withDrawalData?.amount} ETH{" "}
             </Box>
           </Box>
           <Box
@@ -209,7 +211,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               }}
               component="p"
             >
-              Campaign Description
+              Reason for withdrawal
             </Box>
             <Box
               sx={{
@@ -221,7 +223,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               }}
               component="p"
             >
-              {data?.campaignDescription}
+              {withDrawalData?.withdrawalReason}
             </Box>
           </Box>
         </Box>
@@ -252,7 +254,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
           </Button>
           <Button
             loading={loading}
-            onClick={handleCreateCampaign}
+            onClick={requestWithdrawal}
             sx={{
               marginLeft: "24px",
               padding: "16px 24px",
@@ -266,7 +268,7 @@ const CampaignModal = ({ opened, onClose, reset }) => {
               maxWidth: loading ? "214px" : "auto",
             }}
           >
-            Create Campaign
+            Request Withdrawal
           </Button>
         </Box>
       </Box>
@@ -274,4 +276,4 @@ const CampaignModal = ({ opened, onClose, reset }) => {
   );
 };
 
-export default CampaignModal;
+export default ConfirmationModal;
