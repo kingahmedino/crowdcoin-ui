@@ -19,13 +19,12 @@ const DashboardCampaign = () => {
     const myCampaigns = async () => {
       try {
         if (data.length == 0 && active) {
-          console.log('myCampaigns')
           const provider = new ethers.providers.JsonRpcProvider(
             'https://goerli.infura.io/v3/adaa638d09ba451589fc8a00235e3489',
           )
 
           const campaignFactoryInstance = new ethers.Contract(
-            '0x6E3C134A71998F68947DabE1Bd13557e7D06aAfc',
+            '0x107F67F583580F0B6AD61125CC37901A8B08dA83',
             CampaignFactoryABI,
             provider,
           )
@@ -61,7 +60,6 @@ const DashboardCampaign = () => {
             }),
           )
 
-          console.log(myCampaignsData)
           setData(myCampaignsData)
         }
       } catch (err) {
@@ -74,7 +72,7 @@ const DashboardCampaign = () => {
   return (
     <div className={styles.dashboardCampaignContainer}>
       <div className={styles.dashboardCampaignHeader}>
-        <h3>My Campaigns</h3>
+        <h3 className={styles.dashboardTableHeader}>My Campaigns</h3>
         {active ? (
           <Button
             styles={{

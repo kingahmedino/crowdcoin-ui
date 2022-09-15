@@ -1,7 +1,10 @@
 import React from 'react'
 import { Box } from "@mantine/core";
-const Card = () => {
+import Link from "next/link";
+const Card = (data, type) => {
   return (
+    
+    <Link href="/withdrawals/request_withdrawal/">
     <Box
     sx={(theme) => ({
       backgroundColor: "transparent",
@@ -38,6 +41,7 @@ const Card = () => {
       Request a new withdrawal
     </h3>
   </Box>
+          </Link>
   )
 }
 

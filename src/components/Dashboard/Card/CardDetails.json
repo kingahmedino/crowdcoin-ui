@@ -4,19 +4,19 @@
       "id": 0,
       "image": "Campaign.svg",
       "content": "Create campaign",
-      "link": "/"
+      "link": "/campaigns/create-campaign"
     },
     {
       "id": 1,
       "image": "Contributions.svg",
       "content": "My contributions",
-      "link": "/"
+      "link": "/campaigns/myCampaigns"
     },
     {
       "id": 2,
       "image": "Withdrawal.svg",
       "content": "Request withdrawal",
-      "link": "/"
+      "link": "/withdrawals/request_withdrawal"
     }
   ]
 }

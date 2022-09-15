@@ -7,7 +7,7 @@ export default function WithdrawalComponent({ value }) {
   return (
     <>
       <Tabs
-      defaultValue="1"
+        defaultValue="1"
         unstyled
         styles={(theme) => ({
           root: {

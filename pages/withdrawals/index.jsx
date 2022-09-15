@@ -1,6 +1,6 @@
 import { Tabs } from "@mantine/core";
-import WithdrawalComponent from "../src/components/Withdrawal/index.jsx";
-import Activity  from "../src/components/Withdrawal/Activity/index.jsx";
+import WithdrawalComponent from "../../src/components/Withdrawal/index.jsx";
+import Activity  from "../../src/components/Withdrawal/Activity/index.jsx";
 
 export default function Withdrawals() {
   return (
