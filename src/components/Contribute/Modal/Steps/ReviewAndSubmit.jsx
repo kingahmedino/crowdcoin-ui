@@ -1,35 +1,29 @@
 import { Box } from "@mantine/core";
-import { TableDataContext } from "../../Table/index";
+import { TableDataContext } from "../../Table";
 import { useContext } from "react";
 
-export const Default = () => {
+const ReviewAndSubmit = () => {
   const { TableData } = useContext(TableDataContext);
-  console.log(TableData);
+  const contributeData = JSON.parse(localStorage.getItem("contributeData"));
 
   const ObjToArr = [
-    // TableData.CampaignName,
-    // TableData.ValidatorName,
-    // TableData.ValidatorAddress,
-    // TableData.EscrowAddress,
-    // TableData.Contribution,
     {
-      name: "Escrow address",
-      value: TableData.EscrowAddress,
+      name: "Campaign name",
+      value: TableData.CampaignName,
     },
     {
-      name: "Validator address",
-      value: TableData.ValidatorAddress,
+      name: "Validator name",
+      value: TableData.ValidatorName,
     },
     {
-      name: "Minimum dontribution",
-      value: `${TableData.Contribution} ETH`,
+      name: "Amount to be contributed",
+      value: `${contributeData.amount} ETH`,
     },
     {
-      name: "Campaign description",
-      value: "Description",
+      name: "Email",
+      value: contributeData.email,
     },
   ];
-  console.log(ObjToArr);
 
   return (
     <Box>
@@ -44,7 +38,7 @@ export const Default = () => {
         }}
         component="p"
       >
-        Validator: {TableData.ValidatorName}
+        Review
       </Box>
       <Box
         sx={{
@@ -96,3 +90,5 @@ export const Default = () => {
     </Box>
   );
 };
+
+export default ReviewAndSubmit;

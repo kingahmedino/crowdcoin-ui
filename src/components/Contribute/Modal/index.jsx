@@ -4,27 +4,109 @@ import { Default } from "./Steps/Default";
 import { TableDataContext } from "../Table";
 import Verified from "../Table/Verified";
 import { Box } from "@mantine/core";
+import StepOne from "./Steps/StepOne";
+import StepTwo from "./Steps/StepTwo";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import ReviewAndSubmit from "./Steps/ReviewAndSubmit";
+import SuccessNotification from "./SuccessNotification";
+
+const schema = yup.object({
+  email: yup.string().required("Email is required"),
+  amount: yup.string().required("Amount is required"),
+});
 
 export const ContributeModal = ({ open, close }) => {
-  const TableData = useContext(TableDataContext);
+  const { TableData, stepState } = useContext(TableDataContext);
   console.log(TableData);
+  const [step, setStep] = stepState;
 
-  const [step, setStep] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    trigger,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
   const renderStep = () => {
     switch (step) {
       case 0:
         return <Default />;
       case 1:
-        return <Verified />;
+        return <StepOne register={register} errors={errors} />;
+      case 2:
+        return <StepTwo register={register} errors={errors} />;
+      case 3:
+        return <ReviewAndSubmit />;
+      case 4:
+        return <ReviewAndSubmit />;
       default:
-        return <Default />;
+        return <ReviewAndSubmit />;
     }
   };
 
-  const handleStepChange = () => {
-    setStep((step) => step + 1);
+  async function handleStepChange() {
+    let isValid = false;
+
+    switch (step) {
+      case 0:
+        isValid = true;
+        break;
+      case 1:
+        isValid = await trigger("amount");
+        break;
+      case 2:
+        isValid = await trigger("email");
+        const values = getValues();
+        localStorage.setItem("contributeData", JSON.stringify(values));
+        break;
+
+      default:
+        break;
+    }
+    if (isValid) {
+      setStep((step) => step + 1);
+      if (step > 3) {
+        setStep(() => 3);
+      }
+    }
+  }
+
+  const onSubmit = (data) => {
+    if (step === 3) {
+      try {
+        setLoading(() => true);
+        setTimeout(() => {
+          if (typeof window !== undefined) {
+            localStorage.setItem(
+              "FormData",
+              JSON.stringify({
+                ...data,
+                CampaignName: TableData.CampaignName,
+                ValidatorName: TableData.ValidatorName,
+              })
+            );
+          }
+          setLoading(() => false);
+          reset();
+          close();
+          SuccessNotification(data.amount, TableData.CampaignName);
+        }, 4000);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
+
+  console.log("step", step);
 
   return (
     <Modal
@@ -65,61 +147,141 @@ export const ContributeModal = ({ open, close }) => {
             alignItems: "center",
           }}
         >
-          <Box
-            sx={{
-              marginRight: "4px",
-            }}
-          >
-            {" "}
-            {TableData.CampaignName}
-          </Box>{" "}
-          <Verified />{" "}
+          {step < 3 ? (
+            <>
+              <Box
+                sx={{
+                  marginRight: "4px",
+                }}
+              >
+                {" "}
+                {TableData.CampaignName}
+              </Box>{" "}
+              <Verified />{" "}
+            </>
+          ) : (
+            <>Review</>
+          )}
         </Box>
       }
     >
-      {renderStep()}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginTop: "32px",
-        }}
-      >
-        <Button
-          variant="outline"
-          sx={{
-            marginRight: "16px",
-            color: "#dc2626",
-            borderColor: "#dc2626",
-            padding: "16px 24px",
-            maxWidth: "214px",
-            width: "100%",
-            height: "64px",
-            fontSize: "18.3672px",
-            lineHeight: "20px",
-            fontWeight: "400",
-            borderRadius: "16px",
-          }}
-        >
-          Report
-        </Button>
-        <Button
-          onClick={handleStepChange}
-          sx={{
-            backgroundColor: "#2563EB",
-            padding: "16px 24px",
-            maxWidth: "214px",
-            width: "100%",
-            height: "64px",
-            fontSize: "18.3672px",
-            lineHeight: "20px",
-            fontWeight: "400",
-            borderRadius: "16px",
-          }}
-        >
-          Contribute
-        </Button>
-      </Box>
+      {step > 0 ? (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {renderStep()}
+          <Box
+            sx={{
+              display: step < 3 ? "block" : "flex",
+              justifyContent: "flex-end",
+              marginTop: "32px",
+            }}
+          >
+            {step < 3 ? (
+              <Button
+                onClick={handleStepChange}
+                sx={{
+                  width: "100%",
+                  backgroundColor: "#2563EB",
+                  padding: "16px 24px",
+
+                  height: "64px",
+                  fontSize: "18.3672px",
+                  lineHeight: "20px",
+                  fontWeight: "400",
+                  borderRadius: "16px",
+                }}
+              >
+                Continue
+              </Button>
+            ) : (
+              <>
+                <Button
+                  onClick={close}
+                  variant="outline"
+                  sx={{
+                    marginRight: "16px",
+                    color: "#2563EB",
+                    borderColor: "#2563EB",
+                    padding: "16px 24px",
+                    maxWidth: "214px",
+                    width: "100%",
+                    height: "64px",
+                    fontSize: "18.3672px",
+                    lineHeight: "20px",
+                    fontWeight: "400",
+                    borderRadius: "16px",
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  //   onClick={handleStepChange}
+                  loading={loading}
+                  sx={{
+                    backgroundColor: "#2563EB",
+                    padding: "16px 24px",
+                    maxWidth: "214px",
+                    width: "100%",
+                    height: "64px",
+                    fontSize: "18.3672px",
+                    lineHeight: "20px",
+                    fontWeight: "400",
+                    borderRadius: "16px",
+                  }}
+                >
+                  Contribute
+                </Button>
+              </>
+            )}
+          </Box>
+        </form>
+      ) : (
+        <>
+          {renderStep()}
+          <Box
+            sx={{
+              display: step > 0 ? "block" : "flex",
+              justifyContent: "flex-end",
+              marginTop: "32px",
+            }}
+          >
+            <Button
+              variant="outline"
+              sx={{
+                marginRight: "16px",
+                color: "#dc2626",
+                borderColor: "#dc2626",
+                padding: "16px 24px",
+                maxWidth: "214px",
+                width: "100%",
+                height: "64px",
+                fontSize: "18.3672px",
+                lineHeight: "20px",
+                fontWeight: "400",
+                borderRadius: "16px",
+              }}
+            >
+              Report
+            </Button>
+            <Button
+              onClick={handleStepChange}
+              sx={{
+                backgroundColor: "#2563EB",
+                padding: "16px 24px",
+                maxWidth: "214px",
+                width: "100%",
+                height: "64px",
+                fontSize: "18.3672px",
+                lineHeight: "20px",
+                fontWeight: "400",
+                borderRadius: "16px",
+              }}
+            >
+              Contribute
+            </Button>
+          </Box>
+        </>
+      )}
     </Modal>
   );
 };

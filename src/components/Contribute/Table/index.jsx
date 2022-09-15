@@ -41,6 +41,8 @@ const ContributeTable = (props) => {
   const [TableData, setTableData] = useState({});
   const [open, setOpen] = useState(false);
 
+  const [step, setStep] = useState(0);
+
   function handleGetId(id) {
     setId(() => id);
   }
@@ -222,8 +224,18 @@ const ContributeTable = (props) => {
           </tbody>
         </Table>
       </ScrollArea>
-      <TableDataContext.Provider value={TableData}>
-        <ContributeModal open={open} close={() => setOpen(false)} />
+      <TableDataContext.Provider
+        value={{ TableData, stepState: [step, setStep] }}
+      >
+        <ContributeModal
+          open={open}
+          close={() => {
+            setOpen(false);
+            setTimeout(() => {
+              setStep(0);
+            }, 500);
+          }}
+        />
       </TableDataContext.Provider>
     </>
   );
