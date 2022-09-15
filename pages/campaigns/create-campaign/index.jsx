@@ -12,12 +12,12 @@ import { LeftArrowIcon } from "../../../src/components/CreateCampaign/LeftArrow"
 import CampaignModal from "../../../src/components/CreateCampaign/CampaignModal";
 
 const schema = yup.object({
-  campaignName: yup.string().required("Campaign Name is required"),
-  validatorName: yup.string().required("Validator Name is required"),
-  minAmount: yup.string().required("Minimum Amount is required"),
+  campaignName: yup.string().required("Campaign name is required"),
   campaignDescription: yup
     .string()
-    .required("Campaign Description is required"),
+    .required("Campaign description is required"),
+  validatorName: yup.string().required("Validator name is required"),
+  minAmount: yup.string().required("Minimum amount is required"),
 });
 
 const CreateCampaign = () => {
