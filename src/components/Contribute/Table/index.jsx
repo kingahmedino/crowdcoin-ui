@@ -29,7 +29,7 @@ const ContributeTable = (props) => {
     return obj;
   });
 
-  const { active, account } = useWeb3React();
+  const { account } = useWeb3React();
 
   const { classes, cx } = useStyles();
   const [scrolled, setScrolled] = useState(false);
@@ -201,17 +201,7 @@ const ContributeTable = (props) => {
             }}
           >
             {rows.length > 0 ? (
-              active ? (
-                rows
-              ) : (
-                <tr>
-                  <td colSpan={Object.keys(data[0]).length}>
-                    <Text weight={500} align="center">
-                      Connect your wallet
-                    </Text>
-                  </td>
-                </tr>
-              )
+              rows
             ) : (
               <tr>
                 <td colSpan={Object.keys(data[0]).length}>
