@@ -1,4 +1,3 @@
-
 import { Card, Grid } from '@mantine/core'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -11,7 +10,6 @@ import DashbordCard from '../src/components/Dashboard/Card/Card'
 import DashboardCampaign from '../src/components/Dashboard/MyCampaign/MyCampaign'
 import DashbordTable from '../src/components/Dashboard/Table/Table'
 import styles from '../src/shared/styles/Home.module.css'
-
 
 export default function Home({ data }) {
   // console.log(data)
@@ -27,25 +25,22 @@ export default function Home({ data }) {
         </Grid.Col>
       </Grid>
     </div>
-  );
+  )
 }
 
 export async function getServerSideProps() {
   const provider = new ethers.providers.JsonRpcProvider(
-    "https://goerli.infura.io/v3/adaa638d09ba451589fc8a00235e3489"
-  );
+    'https://goerli.infura.io/v3/adaa638d09ba451589fc8a00235e3489',
+  )
 
   const campaignFactoryInstance = new ethers.Contract(
-
     '0x107F67F583580F0B6AD61125CC37901A8B08dA83',
-
     CampaignFactoryABI,
-    provider
-  );
+    provider,
+  )
 
   const campaigns = await campaignFactoryInstance.getDeployedCampaigns()
   const a = BigNumber.from('1000')
-
 
   const campaignsData = await Promise.all(
     campaigns.map(async (campaign) => {
@@ -65,10 +60,9 @@ export async function getServerSideProps() {
   console.log(campaignsData)
   const data = JSON.parse(JSON.stringify(campaignsData))
 
-
   return {
     props: {
       data,
     },
-  };
+  }
 }
