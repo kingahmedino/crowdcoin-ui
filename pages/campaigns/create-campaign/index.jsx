@@ -11,15 +11,6 @@ import { Box } from "@mantine/core";
 import { LeftArrowIcon } from "../../../src/components/CreateCampaign/LeftArrow";
 import CampaignModal from "../../../src/components/CreateCampaign/CampaignModal";
 
-const schema = yup.object({
-  campaignName: yup.string().required("Campaign Name is required"),
-  validatorName: yup.string().required("Validator Name is required"),
-  minAmount: yup.string().required("Minimum Amount is required"),
-  campaignDescription: yup
-    .string()
-    .required("Campaign Description is required"),
-});
-
 const CreateCampaign = () => {
   const [step, setStep] = useState(0);
 
